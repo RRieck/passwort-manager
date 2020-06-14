@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, nativeImage } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -6,8 +6,11 @@ let mainWindow: Electron.BrowserWindow | null;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 800,
+        title: 'password manager',
+        backgroundColor: '#3d3d3d',
+        titleBarStyle: 'hidden',
         webPreferences: {
             nodeIntegration: true,
         },
@@ -29,6 +32,9 @@ function createWindow() {
     mainWindow.on('closed', () => {
         mainWindow = null;
     })
+
+    mainWindow.setMenu(null);
+    mainWindow.setIcon('C:\\Users\\ronri\\Documents\\GitHub\\passwort-manager\\assets\\icon.png')
 }
 
 app.on('ready', createWindow);
