@@ -1,0 +1,42 @@
+{
+  "name": "passwort-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/main.js",
+  "scripts": {
+    "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
+    "dev:react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
+    "start": "concurrently \"npm run dev:react\" \"npm run dev:electron\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RRieck/passwort-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RRieck/passwort-manager/issues"
+  },
+  "homepage": "https://github.com/RRieck/passwort-manager#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "@babel/preset-typescript": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "electron": "^9.0.4",
+    "html-webpack-plugin": "^4.3.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@types/react": "^16.9.36",
+    "@types/react-dom": "^16.9.8",
+    "concurrently": "^5.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
