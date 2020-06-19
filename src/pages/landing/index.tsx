@@ -4,6 +4,7 @@ import { HashRouter, Route } from "react-router-dom";
 import { Home } from "../home";
 import { Create } from "../create";
 import styled from "styled-components";
+import "semantic-ui-css/semantic.min.css";
 
 const MainWrapperDiv = styled.div`
   width: 100vw;
