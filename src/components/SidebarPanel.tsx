@@ -9,8 +9,21 @@ const SidebarPanelWrapperDiv = styled.div<sidebarStyleProps>`
   width: 200px;
   padding: 15px;
   position: relative;
-  right: ${(props) => (props.isActive ? "130px" : "0px")};
+  transform: ${({ isActive }) =>
+    isActive ? "translateX(0)" : "translateX(-120px)"};
+  transition: transform 0.3s;
   background-color: #1e1e1e;
+  z-index: 1;
+`;
+
+const FlexContainerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  div:last-of-type {
+    margin-top: auto;
+  }
 `;
 
 const LinkContainer = styled.div`
@@ -31,54 +44,72 @@ const LinkItemContainer = styled.div`
   justify-content: center;
 `;
 
+const ExpandWrapperDiv = styled.div`
+  width: 170px;
+  display: flex;
+  flex-direction: row-reverse;
+  color: white;
+  font-size: 30px;
+  width: 170px;
+  height: 100px;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+`;
+
 type sidebarStyleProps = {
   isActive: boolean;
 };
 
 export const SidebarPanel = () => {
-  const [isActive, setIsActive] = useState<boolean>(true);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   return (
-    <SidebarPanelWrapperDiv
-      isActive={isActive}
-      onClick={() => setIsActive(!isActive)}
-    >
-      <HashRouter>
-        <LinkContainer>
-          <LinkItemContainer>
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "inherit",
-                fontSize: "inherit",
-                display: "inherit",
-                width: "inherit",
-                justifyContent: "space-between",
-              }}
-              to="/"
-            >
-              Home
-              <Icon name="home" color="grey" />
-            </Link>
-          </LinkItemContainer>
-          <LinkItemContainer>
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "inherit",
-                fontSize: "inherit",
-                display: "inherit",
-                width: "inherit",
-                justifyContent: "space-between",
-              }}
-              to="/create"
-            >
-              Create
-              <Icon name="add" color="grey" />
-            </Link>
-          </LinkItemContainer>
-        </LinkContainer>
-      </HashRouter>
+    <SidebarPanelWrapperDiv isActive={isActive}>
+      <FlexContainerDiv>
+        <HashRouter>
+          <LinkContainer>
+            <LinkItemContainer>
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  fontSize: "inherit",
+                  display: "inherit",
+                  alignItems: "center",
+                  width: "inherit",
+                  justifyContent: "space-between",
+                }}
+                to="/"
+              >
+                Home
+                <Icon size="large" name="home" color="grey" />
+              </Link>
+            </LinkItemContainer>
+            <LinkItemContainer>
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  fontSize: "inherit",
+                  display: "inherit",
+                  alignItems: "center",
+                  width: "inherit",
+                  justifyContent: "space-between",
+                }}
+                to="/create"
+              >
+                Create
+                <Icon size="large" name="add" color="grey" />
+              </Link>
+            </LinkItemContainer>
+          </LinkContainer>
+        </HashRouter>
+        <ExpandWrapperDiv onClick={() => setIsActive(!isActive)}>
+          <Icon name="expand" size="large" color="grey" />
+        </ExpandWrapperDiv>
+      </FlexContainerDiv>
     </SidebarPanelWrapperDiv>
   );
 };

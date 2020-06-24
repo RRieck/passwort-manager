@@ -12,7 +12,12 @@ const MainWrapperDiv = styled.div`
   display: flex;
   flex-direction: row;
 `;
-const ComponentWrapperDiv = styled.div``;
+const ComponentWrapperDiv = styled.div`
+  width: 100%;
+  right: 120px;
+  position: relative;
+  padding: 10px;
+`;
 
 export const Landing = () => {
   return (
