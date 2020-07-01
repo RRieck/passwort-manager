@@ -14,9 +14,8 @@ const MainWrapperDiv = styled.div`
 `;
 const ComponentWrapperDiv = styled.div`
   width: 100%;
-  right: 120px;
+  right: 200px;
   position: relative;
-  padding: 10px;
 `;
 
 export const Landing = () => {

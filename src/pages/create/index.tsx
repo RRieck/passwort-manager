@@ -1,9 +1,10 @@
 import * as React from "react";
+import { CreateLogin } from "./createLogin";
 
 export const Create = () => {
   return (
     <div>
-      <h2>Create a new Passwordx</h2>
+      <CreateLogin />
     </div>
   );
 };
