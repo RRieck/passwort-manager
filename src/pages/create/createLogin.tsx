@@ -1,7 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Dropdown } from "semantic-ui-react";
-import { useState } from "react";
+import { Dropdown, Icon, DropdownItemProps } from "semantic-ui-react";
+import { useState, useEffect } from "react";
+import { Options } from "electron";
 
 const CreateLoginWrapper = styled.div`
   width: 100vw;
@@ -38,32 +39,73 @@ const BasicButton = styled.button<buttonProps>`
   background-color: ${(props) =>
     props.color === "submit" ? "#5bcaff" : "#ff9185"};
   border: none;
+  border-radius: 5px;
+`;
+
+const RefreshIconWrapperDiv = styled.div`
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
 `;
 
 type usecase = "submit" | "clear";
+
 type buttonProps = {
   color: usecase;
 };
 
 export const CreateLogin = () => {
-  const [list, setList] = useState([
-    {
-      key: "overwatch",
-      text: "Overwatch",
-      value: "overwatch",
-    },
-    {
-      key: "instagramm",
-      text: "Instagramm",
-      value: "instagramm",
-    },
-  ]);
+  const [username, setUsername] = useState<string | undefined>(undefined);
+  const [password, setPassword] = useState<string | undefined>(undefined);
+  const [list, setList] = useState<DropdownItemProps[]>();
+
+  useEffect(() => {
+    handleRefresh();
+  }, []);
+
+  const handleRefresh = () => {
+    setList([
+      {
+        key: "overwatch",
+        text: "Overwatch",
+        value: "overwatch",
+      },
+      {
+        key: "instagramm",
+        text: "Instagramm",
+        value: "instagramm",
+      },
+    ]);
+  };
+
+  const handleClearInput = () => {
+    setUsername(undefined);
+    setPassword(undefined);
+  };
+
+  const handleSubmit = () => {
+    console.log("ayy");
+  };
 
   return (
     <CreateLoginWrapper>
+      <RefreshIconWrapperDiv onClick={() => handleRefresh}>
+        <Icon name="refresh" size="big" inverted />
+      </RefreshIconWrapperDiv>
       <h2>CREATE LOGIN</h2>
-      <TextboxArea placeholder="E-Mail or Username" />
-      <TextboxArea placeholder="Password" />
+      <TextboxArea
+        placeholder="E-Mail or Username"
+        style={{ cursor: "pointer" }}
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <TextboxArea
+        placeholder="Password"
+        style={{ cursor: "pointer" }}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <Dropdown
         placeholder="select app"
         options={list}
@@ -73,13 +115,27 @@ export const CreateLogin = () => {
           margin: "10px",
           border: "1px solid gray",
           height: "40px",
-          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           color: "Black",
         }}
       />
       <ButtonWrapper>
-        <BasicButton color={"submit"}>submit</BasicButton>
-        <BasicButton color={"clear"}>clear</BasicButton>
+        <BasicButton
+          color={"submit"}
+          style={{ cursor: "pointer" }}
+          onClick={() => handleSubmit()}
+        >
+          submit
+        </BasicButton>
+        <BasicButton
+          color={"clear"}
+          style={{ cursor: "pointer" }}
+          onClick={() => handleClearInput()}
+        >
+          clear
+        </BasicButton>
       </ButtonWrapper>
     </CreateLoginWrapper>
   );
