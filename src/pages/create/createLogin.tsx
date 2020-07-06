@@ -56,8 +56,8 @@ type buttonProps = {
 };
 
 export const CreateLogin = () => {
-  const [username, setUsername] = useState<string | undefined>(undefined);
-  const [password, setPassword] = useState<string | undefined>(undefined);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [list, setList] = useState<DropdownItemProps[]>();
 
   useEffect(() => {
@@ -80,8 +80,8 @@ export const CreateLogin = () => {
   };
 
   const handleClearInput = () => {
-    setUsername(undefined);
-    setPassword(undefined);
+    setUsername("");
+    setPassword("");
   };
 
   const handleSubmit = () => {
@@ -109,11 +109,11 @@ export const CreateLogin = () => {
       <Dropdown
         placeholder="select app"
         options={list}
-        selection
         style={{
           width: "400px",
           margin: "10px",
           border: "1px solid gray",
+          backgroundColor: "white",
           height: "40px",
           display: "flex",
           alignItems: "center",
